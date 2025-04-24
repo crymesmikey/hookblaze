@@ -1,6 +1,6 @@
 const express = require('express');
 const AWS = require('aws-sdk');
-const { Configuration, OpenAIApi } = require('openai');
+const OpenAI = require('openai'); // ✅ updated import
 const cors = require('cors');
 const bodyParser = require('body-parser');
 require('dotenv').config();
@@ -35,16 +35,19 @@ app.get('/videos', async (req, res) => {
   res.json(videos);
 });
 
-// OpenAI script generation
-const openai = new OpenAIApi(new Configuration({ apiKey: process.env.OPENAI_API_KEY }));
+// ✅ updated OpenAI client setup
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
+// ✅ updated API call syntax
 app.post('/generate-script', async (req, res) => {
   const prompt = req.body.prompt;
-  const completion = await openai.createChatCompletion({
+  const completion = await openai.chat.completions.create({
     model: "gpt-4",
     messages: [{ role: "user", content: `Generate a short, viral hook for: ${prompt}` }]
   });
-  res.json({ script: completion.data.choices[0].message.content });
+  res.json({ script: completion.choices[0].message.content });
 });
 
 app.listen(port, () => {
