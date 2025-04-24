@@ -26,25 +26,26 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0a0f1c] via-[#101828] to-[#0a0f1c] text-white font-sans">
-      <div className="max-w-5xl mx-auto px-6 py-16 space-y-20">
+    <div className="min-h-screen bg-black text-white font-sans">
+      {/* Hero Section */}
+      <section className="bg-black text-center py-24 px-6">
+        <h1 className="text-5xl font-extrabold tracking-tight leading-tight mb-4">
+          This is Hookblaze
+        </h1>
+        <p className="text-lg text-gray-400">
+          Generate viral hooks and download high-performing video intros
+        </p>
+      </section>
 
-        {/* Hero */}
-        <header className="text-center space-y-4">
-          <h1 className="text-5xl font-extrabold tracking-tight">Hookblaze</h1>
-          <p className="text-lg text-gray-400">
-            Generate viral hooks & download high-performing video intros
-          </p>
-        </header>
-
-        {/* Hook Generator */}
-        <section className="bg-[#151c2c] p-8 rounded-2xl shadow-md space-y-4">
-          <h2 className="text-2xl font-semibold">✍️ Hook Script Generator</h2>
+      <main className="max-w-5xl mx-auto px-6 py-12 space-y-20">
+        {/* Hook Script Generator */}
+        <section className="space-y-6">
+          <h2 className="text-2xl font-bold">Hook Script Generator</h2>
           <textarea
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             placeholder="Describe your content..."
-            className="w-full h-28 p-4 rounded-md bg-[#0f1624] border border-gray-700 focus:outline-none text-white"
+            className="w-full h-28 p-4 rounded-md bg-zinc-900 border border-gray-700 focus:outline-none text-white"
           />
           <button
             onClick={generateScript}
@@ -53,21 +54,21 @@ export default function App() {
             Generate Script
           </button>
           {script && (
-            <div className="mt-6 bg-gray-900 border border-gray-700 p-4 rounded-md">
-              <h3 className="text-lg font-bold mb-2">Generated Hook:</h3>
+            <div className="bg-zinc-800 p-4 rounded-lg border border-gray-700 mt-4">
+              <h3 className="font-bold mb-2 text-lg">Generated Hook</h3>
               <p className="text-gray-300 whitespace-pre-line">{script}</p>
             </div>
           )}
         </section>
 
         {/* Video Library */}
-        <section className="space-y-4">
-          <h2 className="text-2xl font-semibold">🎬 Hook Video Library</h2>
+        <section className="space-y-6">
+          <h2 className="text-2xl font-bold">Hook Video Library</h2>
           <div className="grid gap-4">
             {videos.map((v, i) => (
               <div
                 key={i}
-                className="flex justify-between items-center bg-[#151c2c] p-4 rounded-lg border border-gray-700"
+                className="flex justify-between items-center bg-zinc-900 p-4 rounded-lg border border-gray-700"
               >
                 <span className="text-gray-200 truncate">{v.name}</span>
                 <a
@@ -81,7 +82,7 @@ export default function App() {
             ))}
           </div>
         </section>
-      </div>
+      </main>
     </div>
   );
 }
