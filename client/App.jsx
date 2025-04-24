@@ -7,12 +7,22 @@ export default function App() {
   const [script, setScript] = useState("");
 
   useEffect(() => {
-    axios.get("/videos").then(res => setVideos(res.data));
+    axios
+      .get("https://hookblaze.onrender.com/videos")
+      .then((res) => setVideos(res.data))
+      .catch((err) => console.error("Failed to fetch videos:", err));
   }, []);
 
   const generateScript = async () => {
-    const res = await axios.post("/generate-script", { prompt });
-    setScript(res.data.script);
+    try {
+      const res = await axios.post(
+        "https://hookblaze.onrender.com/generate-script",
+        { prompt }
+      );
+      setScript(res.data.script);
+    } catch (err) {
+      console.error("Script generation failed:", err);
+    }
   };
 
   return (
@@ -25,7 +35,11 @@ export default function App() {
           {videos.map((v, i) => (
             <div key={i} className="flex justify-between border p-2 rounded">
               <span>{v.name}</span>
-              <a href={v.url} className="bg-blue-500 text-white px-3 py-1 rounded" download>
+              <a
+                href={v.url}
+                className="bg-blue-500 text-white px-3 py-1 rounded"
+                download
+              >
                 Download
               </a>
             </div>
@@ -41,7 +55,10 @@ export default function App() {
           placeholder="Describe your content..."
           className="w-full h-24 p-2 border rounded mb-4"
         />
-        <button onClick={generateScript} className="bg-green-600 text-white px-4 py-2 rounded">
+        <button
+          onClick={generateScript}
+          className="bg-green-600 text-white px-4 py-2 rounded"
+        >
           Generate Script
         </button>
         {script && (
