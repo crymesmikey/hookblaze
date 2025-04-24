@@ -27,7 +27,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-black text-white font-sans">
-      {/* Hero Section */}
       <section className="bg-black text-center py-24 px-6">
         <h1 className="text-5xl font-extrabold tracking-tight leading-tight mb-4">
           This is Hookblaze
@@ -38,7 +37,6 @@ export default function App() {
       </section>
 
       <main className="max-w-5xl mx-auto px-6 py-12 space-y-20">
-        {/* Hook Script Generator */}
         <section className="space-y-6">
           <h2 className="text-2xl font-bold">Hook Script Generator</h2>
           <textarea
@@ -61,7 +59,6 @@ export default function App() {
           )}
         </section>
 
-        {/* Video Library */}
         <section className="space-y-6">
           <h2 className="text-2xl font-bold">Hook Video Library</h2>
           <div className="grid gap-4">
